@@ -47,7 +47,3 @@ Jochen Liedtke, in his seminal work on L4, argued that **microkernel inefficienc
 - **Driver Isolation**: Windows Driver Frameworks and Linux’s user-space drivers reflect SPIN’s modularity goals.
 
 **Conclusion**: SPIN and Exokernel have **influenced commercial OSes conceptually**, especially in modularity and virtualization, but **not directly adopted** their full models due to practical constraints around safety, compatibility, and performance.
-
----
-
-Want to explore how SPIN’s event model could be emulated in a modern Linux kernel module, or how Exokernel’s secure bindings compare to cgroups and seccomp? I’d love to dive deeper.
