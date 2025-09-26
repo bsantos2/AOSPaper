@@ -91,4 +91,53 @@ Together, these mechanisms ensure that physical memory is shared fairly and that
 
 ---
 
-If you want, I can sketch out how a library OS might implement a scheduler using strands and guards—or simulate a memory quota enforcement scenario. Want to go deeper into one of these?
+Great question, Bianca—these terms are central to how operating systems manage CPU time, especially in extensible kernels like SPIN. Let’s break them down clearly:
+
+---
+
+### 🛑 **Preempting a Thread**
+
+To **preempt** a thread means the operating system forcibly **interrupts** it and takes away the CPU, even if the thread hasn’t finished its work.
+
+- **Why it happens:**  
+  - A higher-priority thread becomes ready.
+  - The current thread exceeds its time quantum.
+  - An I/O event or timer interrupt triggers a context switch.
+
+- **What the OS does:**  
+  - Saves the current thread’s state (registers, stack pointer, etc.).
+  - Switches to another thread.
+  - Later, resumes the preempted thread from where it left off.
+
+- **Example:**  
+  In a Round-Robin scheduler, each thread gets a fixed time slice. If it doesn’t finish, it’s preempted and the next thread runs.
+
+---
+
+### 🌀 **Throttling a Thread**
+
+To **throttle** a thread means the OS **deliberately limits** how much CPU time it gets over a longer period. It’s more about **rate control** than immediate interruption.
+
+- **Why it happens:**  
+  - To prevent a thread (or library OS) from hogging the CPU.
+  - To enforce fairness or resource quotas.
+  - To manage thermal or power constraints.
+
+- **How it works:**  
+  - The scheduler tracks CPU usage over time.
+  - If a thread exceeds its allowed budget, it’s delayed or deprioritized.
+  - It may be temporarily blocked or given fewer time slices.
+
+- **Example in SPIN:**  
+  SPIN’s global scheduler might throttle a library OS by reducing how often its strands are resumed, ensuring other OSes get fair CPU access.
+
+---
+
+### 🔍 Analogy
+
+Think of **preemption** as someone tapping your shoulder mid-sentence and saying, “Time’s up—next speaker!”  
+**Throttling** is more like being told, “You can speak, but only for 5 minutes every hour.”
+
+---
+
+If you’re designing a scheduler or enforcing quotas in SPIN, you’d use **preemption** for responsiveness and **throttling** for fairness across domains. Want to sketch out how SPIN might implement throttling using strand metadata or guards?
