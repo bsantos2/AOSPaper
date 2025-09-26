@@ -1,10 +1,6 @@
 Xen Paper
 --------
 
-Great question, Bianca—let’s break it down clearly:
-
----
-
 ### 🧠 What Is **Xen**?
 
 **Xen** is a **type-1 hypervisor**, meaning it runs directly on hardware and manages multiple virtual machines (VMs). It was originally developed at the University of Cambridge and is now maintained by the [Xen Project](https://en.wikipedia.org/wiki/Xen).
