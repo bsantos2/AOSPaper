@@ -1,7 +1,3 @@
-Great questions—these dive deep into SPIN’s architecture and how it leverages Modula-3 for safe extensibility. Let’s break each one down:
-
----
-
 ### 🧠 1. Essential Features of Modula-3 for SPIN’s Extensibility
 
 SPIN relies heavily on Modula-3’s language-level safety and modularity to support dynamic, safe kernel extensions. The most essential features are:
