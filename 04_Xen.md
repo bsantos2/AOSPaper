@@ -35,8 +35,6 @@ So when you run an app like `foo` on XenoLinux, you're really running it inside 
 
 ---
 
-If you’d like, I can walk through how a system call like `fopen()` travels through XenoLinux and Xen—or how Xen schedules multiple VMs fairly. Want to explore that next?
-
 ### 🧭 1. Launching Application "foo" on XenoLinux
 Imagine a Linux OS top of Xen (XenoLinux). A user launches an application
 "foo" on top of XenoLinux. Walk through the steps that happen before foo
