@@ -1,6 +1,46 @@
 Xen Paper
 --------
 
+Great question, Bianca—let’s break it down clearly:
+
+---
+
+### 🧠 What Is **Xen**?
+
+**Xen** is a **type-1 hypervisor**, meaning it runs directly on hardware and manages multiple virtual machines (VMs). It was originally developed at the University of Cambridge and is now maintained by the [Xen Project](https://en.wikipedia.org/wiki/Xen).
+
+#### Key Features:
+- **Paravirtualization & Full Virtualization**  
+  - Paravirtualization: guest OS is modified to interact efficiently with Xen.
+  - Full virtualization: uses hardware support (e.g., Intel VT-x) to run unmodified OSes.
+
+- **Domain-Based Architecture**  
+  - **Dom0**: the privileged domain (usually Linux) that manages hardware and launches other VMs.
+  - **DomU**: unprivileged guest domains (user VMs) that run applications.
+
+- **Resource Control**  
+  - Xen handles CPU scheduling, memory allocation, and device access across VMs.
+
+Think of Xen as the traffic controller that safely and efficiently coordinates multiple operating systems on one physical machine.
+
+---
+
+### 🐧 What Is **XenoLinux**?
+
+**XenoLinux** is a **modified Linux kernel** designed to run as a guest OS on top of Xen.
+
+#### How It Works:
+- It runs in **DomU**, the unprivileged domain.
+- It’s aware that it’s running under Xen (i.e., **paravirtualized**).
+- It uses **hypercalls** to interact with Xen for privileged operations (e.g., memory allocation, I/O).
+- It handles its own processes, file systems, and system calls—just like a normal Linux kernel—but delegates low-level resource management to Xen.
+
+So when you run an app like `foo` on XenoLinux, you're really running it inside a virtual machine managed by Xen, with XenoLinux acting as the OS inside that VM.
+
+---
+
+If you’d like, I can walk through how a system call like `fopen()` travels through XenoLinux and Xen—or how Xen schedules multiple VMs fairly. Want to explore that next?
+
 ### 🧭 1. Launching Application "foo" on XenoLinux
 Imagine a Linux OS top of Xen (XenoLinux). A user launches an application
 "foo" on top of XenoLinux. Walk through the steps that happen before foo
